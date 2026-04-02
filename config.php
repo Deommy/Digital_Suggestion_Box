@@ -310,13 +310,13 @@ function getOrCreateConversation(mysqli $conn, int $studentId, string $channel):
     return $id;
 }
 
-$host = "localhost";
-$db   = "Digital_Suggestion_Box"; // ← PALITAN kung iba name ng DB mo
-$user = "root";
-$pass = "";
-
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    $host = getenv('DB_HOST');
+    $db   = getenv('DB_NAME');
+    $user = getenv('DB_USER');
+    $pass = getenv('DB_PASS');
+
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("DB ERROR: " . $e->getMessage());
