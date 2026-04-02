@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email - Digital Suggestion Box</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </div>
+                <h1 class="auth-title">Verify Your Email</h1>
+                <p class="auth-subtitle">Enter the 6-digit code sent to <br><strong id="emailDisplay"></strong></p>
+            </div>
+
+            <div id="alertMessage" class="alert"></div>
+
+            <form id="verifyForm">
+                <div class="form-group">
+                    <label class="form-label" for="verificationCode">Verification Code</label>
+                    <input 
+                        type="text" 
+                        id="verificationCode" 
+                        name="verificationCode" 
+                        class="form-input" 
+                        placeholder="000000"
+                        maxlength="6"
+                        pattern="[0-9]{6}"
+                        required
+                        style="text-align: center; font-size: 1.5rem; letter-spacing: 0.5em; font-family: var(--font-mono);"
+                    >
+                    <span class="form-error" id="codeError"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="verifyBtn">
+                    Verify Email
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Didn't receive the code? <a href="#" id="resendLink">Resend Code</a></p>
+                <p style="margin-top: 0.5rem;"><a href="login.html">Back to Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="verify.js"></script>
+</body>
+</html>

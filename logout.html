@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logged Out - Digital Suggestion Box</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .logout-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--spacing-lg);
+      animation: scaleIn 0.5s ease-out;
+    }
+    .logout-icon svg { width: 40px; height: 40px; fill: white; }
+    @keyframes scaleIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .logout-message { text-align: center; animation: fadeInUp 0.6s ease-out 0.2s both; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .logout-title { font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: var(--spacing-md); }
+    .logout-subtitle { font-size: 1.125rem; color: var(--text-secondary); margin-bottom: var(--spacing-xl); line-height: 1.6; }
+
+    .redirect-info { font-size: 0.875rem; color: var(--text-muted); margin-top: var(--spacing-lg); animation: fadeIn 1s ease-out 1s both; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .progress-bar {
+      width: 200px;
+      height: 4px;
+      background: var(--border);
+      border-radius: var(--radius-full);
+      margin: var(--spacing-lg) auto;
+      overflow: hidden;
+      animation: fadeIn 1s ease-out 1s both;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: var(--radius-full);
+      animation: progress 3s linear;
+    }
+    @keyframes progress { from { width: 0%; } to { width: 100%; } }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-box">
+      <div class="logout-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M9 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <div class="logout-message">
+        <h1 class="logout-title">Thank You!</h1>
+        <p class="logout-subtitle">
+          You have been successfully logged out.<br>
+          We hope to see you again soon!
+        </p>
+
+        <a href="login.html" class="btn btn-primary" style="display: inline-flex; text-decoration: none;">
+          Back to Login
+        </a>
+
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+
+        <p class="redirect-info">
+          Redirecting to login page in <span id="countdown">3</span> seconds...
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  let countdown = 3;
+  const countdownElement = document.getElementById('countdown');
+
+  const timer = setInterval(() => {
+    countdown--;
+    if (countdownElement) countdownElement.textContent = countdown;
+
+    if (countdown <= 0) {
+      clearInterval(timer);
+      // ✅ use replace para di bumalik sa back button
+      window.location.replace('./login.html');
+    }
+  }, 1000);
+
+  localStorage.clear();
+  sessionStorage.clear();
+</script>
+
+</body>
+</html>

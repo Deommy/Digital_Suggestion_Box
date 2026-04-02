@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>.messages-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-right{
+  display: flex;
+  align-items: center;
+}
+
+#dateFilter{
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Digital Suggestion Box</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- JS (DEFER para safe) -->
+  <script src="admin-dashboard.js" defer></script>
+</head>
+
+<body>
+
+  <!-- Mobile Menu Toggle -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button">
+    ☰
+  </button>
+
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar-header">
+  <div style="display:flex; align-items:center; gap:10px;">
+    <img src="PULOGO.webp" alt="Logo" class="logo-img">
+    <div class="sidebar-title">Digital Suggestion Box</div>
+  </div>
+</div>
+
+      <nav class="sidebar-nav">
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Analytics</div>
+
+          <a href="#" class="sidebar-link" id="anonymousLink">
+            Anonymous <span class="badge" id="anonymousCount">0</span>
+          </a>
+
+          <a href="#" class="sidebar-link" id="nonAnonymousLink">
+            Non-Anonymous <span class="badge" id="nonAnonymousCount">0</span>
+          </a>
+
+          <a href="#" class="sidebar-link" id="allLink">
+            All Messages
+          </a>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Account</div>
+
+          <a href="#" class="sidebar-link" id="profileLink">
+            Administrator
+          </a>
+
+          <a href="logout.php" class="sidebar-link">
+            Logout
+          </a>
+        </div>
+
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="messages-container">
+        <h3 id="messagesTitle">All Messages</h3>
+        <div id="messagesList"></div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- PROFILE MODAL -->
+  <div id="profileModal" class="modal">
+    <div class="modal-card">
+      <h3>Administrator</h3>
+      <p><strong>Name:</strong> <?php echo htmlspecialchars($userName); ?></p>
+      <p><strong>Email:</strong> <?php echo htmlspecialchars($userEmail); ?></p>
+      <button onclick="closeProfile()">Close</button>
+    </div>
+  </div>
+
+  <!-- REPLY MODAL -->
+  <div id="replyModal" class="modal">
+    <div class="modal-card large">
+      <h3 id="replyTitle">Conversation</h3>
+
+      <div id="originalMessage"></div>
+
+      <textarea id="replyInput"></textarea>
+      <button id="sendReplyBtn">Send Reply</button>
+    </div>
+  </div>
+
+</body>
+</html>
